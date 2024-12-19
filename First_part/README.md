@@ -56,7 +56,7 @@ In the file stats.txt it appears that the number of commited instructions is equ
 ```bash
 system.cpu_cluster.cpus.committedInsts           5027                       # Number of instructions committed
 ```
-* #### c)How many times was L2 cache accesed? How can we calculate that?.
+* #### d)How many times was L2 cache accesed? How can we calculate that?.
 
 * In the file stats.txt it appears that the number of L2 acceses is equal to 474 times (lines 840-42)
   ```bash
