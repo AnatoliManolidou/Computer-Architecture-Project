@@ -50,7 +50,7 @@ Characteristic|config.ini|config.json|
 * sim_insts is the number of instructions that were simulated
 * host_inst_rate is the rate of instructions simulated per second
 
-#### c)How many committed instructions do we have? Why isn't this number the same as the statistics that are presented about GEM5?.
+#### c)How many committed instructions do we have? Why isn't this number the same as the statistics that are presented about GEM5?
 
 In the file stats.txt it appears that the number of commited instructions is equal to 5027 (line 27)
 ```bash
