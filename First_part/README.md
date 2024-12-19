@@ -1,5 +1,5 @@
 # FIRST PART
-### First Question: Key characteristics of the system (derived from the starter_se.py file).
+## First Question: Key characteristics of the system (derived from the starter_se.py file).
 
 * CPU type: Looking at the starter_se.py file, in the line _191_ we see this snippet of code:
   ```python
@@ -29,7 +29,7 @@
 * Voltage for the CPU core: 1.2V
 * Memory bus type: SystemXBar
 
-### Second Question: Key characteristics of the system (derived from the stats.txt, config.ini and config.json files).
+## Second Question: Key characteristics of the system (derived from the stats.txt, config.ini and config.json files).
 
 #### a)Verify the results from _First Question_ using the files stats.txt, config.ini and config.json.
 
@@ -65,7 +65,7 @@ system.cpu_cluster.cpus.committedInsts           5027                       # Nu
   system.cpu_cluster.l2.overall_accesses::total          474                       # number of overall (read+write) accesses
   ```
 
-### Third Question: In order CPU models.
+## Third Question: In order CPU models.
 
 According to [gem5.org](https://www.gem5.org), we have the following in order CPU models:
 
