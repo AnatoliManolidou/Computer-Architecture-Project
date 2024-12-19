@@ -33,7 +33,7 @@
 
 #### a)Verify the results from _First Question_ using the files stats.txt, config.ini and config.json.
 
-From all the above charecteristics i managed to verify the followings:
+For all the above charecteristics i managed to verify the followings:
 
 Characteristic|config.ini|config.json|
 |---------|----------|-----------|
