@@ -1,17 +1,17 @@
 # FIRST PART
 ## First Question: Key characteristics of the system (derived from the starter_se.py file).
 
-* CPU type: Looking at the starter_se.py file, in the line _191_ we see this snippet of code:
+* CPU type: Looking at the `starter_se.py` file, in the _line 191_ we see this snippet of code:
   ```python
   parser.add_argument("--cpu", type=str, choices=cpu_types.keys(),
                         default="atomic",
                         help="CPU model to use")
   ```
-  This sets the default CPU type as **atomic**. But when we run this command in the shell:
+  This sets the default CPU type as `atomic`. But when we run this command in the shell:
   ```bash
   $ ./build/ARM/gem5.opt -d hello_result configs/example/arm/starter_se.py --cpu="minor" "tests/test-progs/hello/bin/arm/linux/hello"
   ```
-  we set the CPU type as **minor**. The shell command dominates the default set in the starter__se.sy file.
+  we set the CPU type as `minor`. The shell command dominates the default set in the `starter__se.sy` file.
 
 * CPU frequency: 1GHz 
 * Physical memory size: 2Gb
@@ -44,7 +44,7 @@ Characteristic|config.ini|config.json|
 |CPU type         |line 67: type=MinorCPU|line 429: "type": "MinorCPU"|
 |Number of memory ranks per channel         |line 1296: ranks_per_channel=2|line 1771: "ranks_per_channel": 2|
 
-  We can notice that both the configuration files say that the memory ranks per channel are equal to 2 but this does not allign with the python configuration file. Despite the fact that we did not add any configuration when we run GEM5 in the command. We get 2 memory ranks per channel from the configuration files, because of the memory type that we selected (DDR3_1600_8x8).
+We can notice that both the configuration files say that the memory ranks per channel are equal to 2 but this does not allign with the python configuration file. Despite the fact that we did not add any configuration when we run GEM5. We get 2 memory ranks per channel from the configuration files, because of the memory type that we selected `(DDR3_1600_8x8)`.
 
 #### b)Explain what sim_seconds, sim_insts and host_inst_rate mean.
 
@@ -54,11 +54,11 @@ Characteristic|config.ini|config.json|
 
 #### c)How many committed instructions do we have? Why isn't this number the same as the statistics that are presented about GEM5?
 
-In the file stats.txt it appears that the number of commited instructions is equal to 5027 (line 27)
+In the file `stats.txt` it appears that the number of commited instructions is equal to 5027 _(line 27)_
 ```bash
 system.cpu_cluster.cpus.committedInsts           5027                       # Number of instructions committed
 ```
-  Commited instructions are the instructions that were executed and retred successfully by the CPU. Aside from the commited ones we also have fetched instructions:
+Commited instructions are the instructions that were executed and retred successfully by the CPU. Aside from the commited ones we also have fetched instructions:
 
 ```bash
   system.cpu_cluster.cpus.fetch2.amo_instructions            0                       # Number of memory atomic instructions   successfully decoded
@@ -68,18 +68,18 @@ system.cpu_cluster.cpus.committedInsts           5027                       # Nu
   system.cpu_cluster.cpus.fetch2.store_instructions          828                       # Number of memory store   instructions successfully decoded
   system.cpu_cluster.cpus.fetch2.vec_instructions            0                       # Number of SIMD instructions       successfully decoded
 ```
-  If we sum all these up, it amounts to 8153 fetched instructions. We can see that this number does not allign with the commited instructions. That is due to the fact that the fetched insructions include discarded instructions that were not ecexuted because of a branch misprediction or a pipeline hazard, cache miss etc.
+If we sum all these up, it amounts to `8153` fetched instructions. We can see that this number does not allign with the commited instructions. That is due to the fact that the fetched insructions include discarded instructions that were not ecexuted because of a branch misprediction or a pipeline hazard, cache miss etc.
 
 * #### d)How many times was L2 cache accesed? How can we calculate that?
 
-* In the file stats.txt it appears that the number of L2 acceses is equal to 474 times (lines 840-42)
+* In the file stats.txt it appears that the number of L2 acceses is equal to 474 times _(lines 840-42)_
   ```bash
   system.cpu_cluster.l2.overall_accesses::.cpu_cluster.cpus.inst          327                       # number of overall (read+write) accesses
   system.cpu_cluster.l2.overall_accesses::.cpu_cluster.cpus.data          147                       # number of overall (read+write) accesses
   system.cpu_cluster.l2.overall_accesses::total          474                       # number of overall (read+write) accesses
   ```
 
-  The number of times that the L2 cache was accessed is equal to the number of times L1 was accessed but a cache miss occured, as regards data. The followin snippet is from line 23:
+The number of times that the L2 cache was accessed is equal to the number of times L1 was accessed but a cache miss occured, as regards data. The following snippet is from _line 23_:
 
   ```bash
   system.cpu_cluster.cpus.branchPred.indirectMisses          147                       # Number of indirect misses.
@@ -100,7 +100,7 @@ According to [gem5.org](https://www.gem5.org), we have the following in order CP
 * **MinorCPU**\
 This model has a fixed pipeline but adaptable data structures and execute behaviour. Also, it does not support multithreading 
 
-* #### a)Wrte a C program that implements the fibonacci sequence and then run simulations with GEM5, using different types of CPU.
+* #### a)WrIte a C program that implements the fibonacci sequence and then run simulations with GEM5, using different types of CPU.
 
 
 
@@ -114,26 +114,26 @@ Execution times|MinorCPU|TimingSimpleCPU|
 
 b)What are your comments about the above results?
 
-  We can see that when we used the MinorCPU type the simulation needed less time to execute than when we used TimingSimpleCPU. That comes from the fact that MinorCPU is based on pipelining and TimingSimpleCPU processes instructions sequentially.
+  We can see that when we used the `MinorCPU` type the simulation needed less time to execute than when we used `TimingSimpleCPU`. That comes from the fact that `MinorCPU` is based on pipelining and `TimingSimpleCPU` processes instructions sequentially.
 
 b)Run new simulations for the above types of CPUs using different CPU frequency and memory type.
 
 * Changing the frequency of the CPU
 
-  For MinorCPU i used the following command:
+  For `MinorCPU` the following command was used:
 
   ```bash
   ./build/ARM/gem5.opt -d fib_results_minor_freq configs/example/se.py --cpu-type=MinorCPU --cpu-clock=0.7GHz --caches -c tests/test-progs/fibonacci/fib
   ```
 
-  So by changing the frequency into 7GHz, i noticed that the sim_seconds got a higher value (previously it was equal to 0.000036 seconds). Specifically
+  So by changing the frequency to 7GHz, i noticed that the sim_seconds got a higher value (previously it was equal to 0.000036 seconds). Specifically
 
   ```bash
   sim_seconds                                  0.000053                       # Number of seconds simulated
   ```
   That makes sense since by lowering the clock speed of the CPU, more time is needed in order for the simulation to execute.
   
-  For MinorCPU i used the following command:
+  For `MinorCPU` the following command was used:
 
   ```bash
     ./build/ARM/gem5.opt -d fib_results_timing__freq configs/example/se.py --cpu-type=TimingSimpleCPU --cpu-clock=0.7GHz --caches -c tests/test-progs/fibonacci/fib
@@ -147,9 +147,9 @@ b)Run new simulations for the above types of CPUs using different CPU frequency 
 
 * Changing the memory type
 
-For this test, i decided to change the mmeory type from DDR3_1800_8x8 to DDR4_2400_16x4.
+For this test, i decided to change the mmeory type from `DDR3_1800_8x8` to `DDR4_2400_16x4`.
 
-For MinorCPU i used the following command:
+For `MinorCPU` the following command was used:
 
 ```bash
 /build/ARM/gem5.opt -d fib_results_minor_mem configs/example/se.py --cpu-type=MinorCPU --mem-type=DDR4_2400_16x4 --caches -c tests/test-progs/fibonacci/fib
@@ -161,7 +161,7 @@ And got these results:
 ```
 We can notice that there is a sligh improvement about the execution time (only 1000ns).
 
-For TimingSimpleCPU i used the following command:
+For `TimingSimpleCPU` i used the following command:
 
 ```bash
   /build/ARM/gem5.opt -d fib_results_timing_mem configs/example/se.py --cpu-type=TimingSimpleCPU --mem-type=DDR4_2400_16x4 --caches -c tests/test-progs/fibonacci/fib
