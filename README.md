@@ -107,10 +107,10 @@ $ ./build/ARM/gem5.opt -d spec_results3/speclibm configs/example/se.py --cpu-typ
 
 #### Results:
 ```bash
-
+system.cpu_clk_domain.clock                       333                       # Clock period in ticks
 ```
 ```bash
-
+system.clk_domain.clock                          1000                       # Clock period in ticks
 ```
 **Final conclusions:
 
