@@ -191,4 +191,3 @@ For this type of CPU, we can notice that there is no change in the execution tim
 
 https://www.gem5.org/documentation/general_docs/cpu_models/minor_cpu
 https://www.gem5.org/documentation/general_docs/cpu_models/SimpleCPU
->>>>>>> 5d01f5f1695583e7130d899674a5d38f92e31708
