@@ -112,7 +112,7 @@ system.cpu_clk_domain.clock                       333                       # Cl
 ```bash
 system.clk_domain.clock                          1000                       # Clock period in ticks
 ```
-**Final conclusions:
+** Final conclusions:
 
 
 
