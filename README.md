@@ -114,5 +114,15 @@ system.clk_domain.clock                          1000                       # Cl
 ```
 ** Final conclusions:
 
+* Default frequency:
+  The CPU is clocked at 2GHz, since we have 500 ticks and 1/500=2GHZ
+
+* 1GHz:
+The CPU is clocked at 1GHz, since we have 1000 ticks and 1/1000=1GHz
+
+* 3GHz:
+The CPU is clocked at 3GHz, since we have 333 ticks and 1/333=3GHz  
+
+
 
 
