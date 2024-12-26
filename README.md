@@ -8,10 +8,10 @@ From the `config.ini` file:
 
 |Size characteristics|config.ini|
 |---------------|----------------|
-|L1D|line 155/line 179:[system.cpu.dcache]/size=65536|
-|L1I|line 789/line 813:[system.cpu.icache]/size=32768|
-|L2|line 994/line 1018:[system.l2]/size=2097152|
-|Cache line|line 155: "cache_line_size": 64|
+|L1D|`line 155/line 179:` [system.cpu.dcache]/size=65536|
+|L1I|`line 789/line 813:` [system.cpu.icache]/size=32768|
+|L2|`line 994/line 1018:` [system.l2]/size=2097152|
+|Cache line|`line 155:`  "cache_line_size": 64|
 
 
 ### Second Question. Benchmark analysis
