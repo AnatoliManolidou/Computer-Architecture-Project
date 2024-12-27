@@ -14,6 +14,11 @@ From the `config.ini` file:
 |Cache line|`line 155:`  "cache_line_size": 64|
 
 
+l1d assoc = 2
+l1i assoc = 2
+l2 assoc = 8
+
+
 ### Second Question. Benchmark analysis
 
 These are the commands that were used:
@@ -199,6 +204,23 @@ no change
 no change 
 
 
+## SPECLIBM
+
+Because the miss rate of the L1 data cache is quite high, in the first test i applied double associativity and size for the l1 data cache. The miss rate for the L2 cache is also quite high, so in the second test i doubled the L2's size and associativity (while keeping the configurations of the first test for the L1D cache). Then, for the third test, i kept the configurations of the first test and doubled the cache line size and associivity of L2. Also, for the fourth test i kept the configurations of the third test and doubled the cache line size .Finally, an increase in the cache line size alone was tested (double the initial size).
+
+These are the commands that were used:
+
+```bash
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=8 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000  
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000 
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/4 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000 
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/5 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=8 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000
+```
 
 
 # REFERENCES
