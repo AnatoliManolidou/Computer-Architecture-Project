@@ -39,7 +39,7 @@ $ ./build/ARM/gem5.opt -d spec_results/speclibm configs/example/se.py --cpu-type
 And these are the results that were extracted from the `stats.txt` file of each benchmark:
 
 # Results
- | Characteristics | specbzip | specmcf | spechmmer | sjeng | speclibm |
+ | Characteristics | specbzip | specmcf | spechmmer | specsjeng | speclibm |
  | ------ | ------ | ------ | ------ | ------ | ------ |
  | Execution time |`line 12:` 0.083982|`line12:` 0.064955 |`line 12:` 0.05936 |`line 12:` 0.513528 |`line 12:` 0.174671 |
  | CPI |`line 29:` 1.679650|`line 29:` 1.299095|`line 29:` 1.187917 |`line 29:` 10.270554 |`line 29:` 3.493415 |
