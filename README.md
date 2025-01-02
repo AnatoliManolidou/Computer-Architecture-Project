@@ -195,7 +195,7 @@ Moderate miss rates for `sjeng` and `speclibm` suggest potential conflict misses
 
 * L1 Data Cache Size
 
-Agaim, `sjeng` (0.121831) and `speclibm` (0.060972) show relatively higher L1 data cache miss rates compared to others. Other benchmarks have very low miss rates, indicating sufficient L1 data cache size. Increase L1 data cache size specifically for `sjeng` and `speclibm`. These benchmarks appear to have larger data sets or higher spatial locality.
+Again, `sjeng` (0.121831) and `speclibm` (0.060972) show relatively higher L1 data cache miss rates compared to others. Other benchmarks have very low miss rates, indicating sufficient L1 data cache size. Increase L1 data cache size specifically for `sjeng` and `speclibm`. These benchmarks appear to have larger data sets or higher spatial locality.
 
 * L1 Instruction Cache Associativity
 no change
@@ -223,9 +223,7 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/5 configs/example/se.py --cp
 ```
 ![opt_speclibm](https://github.com/user-attachments/assets/fa9b6993-3a43-412f-a2eb-0a32c63ee1dd)
 
-
-
-### SPECMCF
+## SPECMCF
 
 From the [chart](#results), it is apparent that the L1 instruction cache has a high miss rate. To mitigate this, in the first test, I doubled both the size and associativity of the L1 instruction cache. In the second test, I quadrupled these parameters. For the third test, I reverted the L1I size to 64kB and its associativity to 4, but doubled the cache line size instead.
 
@@ -240,7 +238,7 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specmcf/3 configs/example/se.py --cpu
 ```
 ![opt_specmcf](https://github.com/user-attachments/assets/c8741e36-5334-48d5-822a-8d29c001d588)
 
-### SPECSJENG
+## SPECSJENG
 
 From the [chart](#results), `specsjeng` exhibits a very high CPI. Both the L1 data and L2 caches have significant miss rates. To address these, in the first test, I doubled the size and associativity of the L1 data cache. In the second test, I applied the same doubling to the L2 cache. For the third test, I combined the configurations of the first two tests. Finally, in the fourth test, I added a doubling of the cache line size on top of the third test’s configurations.
 
@@ -257,8 +255,7 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/4 configs/example/se.py --c
 ```
 ![specsjeng](https://github.com/user-attachments/assets/c93b44c9-b321-4a93-8723-12a5555b2687)
 
-
-### SPECHMMER
+## SPECHMMER
 
 By looking at this [chart](#results), we can see that the `spechmmer` benchmark already exhibits a satisfactory CPI, being close to 1. However, since the L2 cache had the highest miss rate among the caches, I first doubled its size and associativity. Then, in the second test i kept the configurations of the first test and doubled the size of the L1 data cache and its associativity aswell. Lastly, in the third test, since there was an slight improvement in the second test compared to the first one,i retained the second test's optimizations and doubled the cache line size.
 
@@ -273,7 +270,7 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/3 configs/example/se.py --c
 ```
 ![opt_spechmmer](https://github.com/user-attachments/assets/9637c5e4-fa54-4c4f-ad7c-db2871aea2e8)
 
-### SPECBZIP
+## SPECBZIP
 
 By looking at this [chart](#results) and at the intial graphs, we can see that the `specbzip` benchmark represents similar results with the `spechmmer` benchmark. Thus, i applied the exact same tests on the `specbzip` benchmark as the `spechmmer`benchmark. 
 
@@ -282,13 +279,12 @@ The commands used are as follows:
 ```bash
 
 ```
-
-
-
+![opt_specbzip](https://github.com/user-attachments/assets/2ee0d86a-6d24-4d1f-8993-210a5a938ae1)
 
 
 # REFERENCES
 
 [GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)
+[GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)
 
 
