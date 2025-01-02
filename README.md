@@ -266,6 +266,7 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/1 configs/example/se.py --c
 $ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 
 
 $ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000
+```
 ![opt_spechmmer](https://github.com/user-attachments/assets/9637c5e4-fa54-4c4f-ad7c-db2871aea2e8)
 
 ## SPECBZIP
