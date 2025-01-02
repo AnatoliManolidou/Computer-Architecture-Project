@@ -290,6 +290,8 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/4 configs/example/se.py --cp
 
 ![Formula](https://latex.codecogs.com/png.latex?\bg_white%20f%20=%20a%20\cdot%20\frac{\text{L1%20instruction%20cache%20size}}{32%20\text{kB}}%20+%20b%20\cdot%20\frac{\text{L1%20data%20cache%20size}}{64%20\text{kB}}%20+%20c%20\cdot%20\frac{\text{L2%20cache%20size}}{2%20\text{MB}}%20+%20d%20\cdot%20\frac{\text{L1%20instruction%20cache%20associativity}}{2}%20+%20e%20\cdot%20\frac{\text{L1%20data%20cache%20associativity}}{2}%20+%20f%20\cdot%20\frac{\text{L2%20cache%20associativity}}{8}%20+%20g%20\cdot%20\frac{\text{Cache%20line%20size}}{64%20\text{kB}})
 
+We know that L1 is more expensive than L2 since L2 has a lower cost per bit compared to L1 and L1 has a higher cost per bit due to speed and proximity to the core, so a bigger coefficient for L1 was applied. An increase in the cache line size is the least coslty 
+
 
 
 
