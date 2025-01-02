@@ -55,7 +55,7 @@ def plot_cpi(stats_files, custom_labels):
     # Plot the CPI values
     plt.figure(figsize=(8, 6))
     plt.plot(custom_labels_mapped, cpi_values, marker='o', linestyle='-', color='b')
-    plt.title("CPI Across different configurations for SPECBZIP")
+    plt.title("CPI Across different configurations")
     plt.xlabel("")
     plt.ylabel("CPI (Cycles per Instruction)")
     plt.grid(True)
