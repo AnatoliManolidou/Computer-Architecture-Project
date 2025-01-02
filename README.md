@@ -152,7 +152,7 @@ and lines 160-164
                 1000
             ],
 ```
-Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/Part2_Graphs2.py) that was used before (now modified to extract only the graph for execution time) we obtained the following graphs:
+Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/Part2_Graphs2.py) that was used before (now modified to extract only the graph for execution time) the following graphs were obtained:
 ![execution_time_1GHz](https://github.com/user-attachments/assets/fa803096-e3f1-4b4b-9cf7-0a593e924aa2)
 ![execution_time_3GHz](https://github.com/user-attachments/assets/8db07496-97ab-4749-8442-98d31d7ff7d7)
 
@@ -201,6 +201,8 @@ The only benchmark that showed a high miss rate for the L1 instruction cache, wa
 
 * L1 Instruction Cache Associativity
 As mentioned above, the `specmcf` showed a high miss rate for the L1 instruction cache, so an increase in its associativity was also tested.
+
+Lastly, this [python code]() was used in order to obtain all of the following graphs.
 
 ## SPECLIBM
 
