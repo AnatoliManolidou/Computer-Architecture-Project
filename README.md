@@ -275,16 +275,12 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/3 configs/example/se.py --c
 
 ### SPECBZIP
 
-By looking at this [chart](#results), we can see that the `spechmmer` benchmark already exhibits a satisfactory CPI, being close to 1. However, since the L2 cache had the highest miss rate among the caches, I first doubled its size and associativity. Then, in the second test i kept the configurations of the first test and doubled the size of the L1 data cache and its associativity aswell. Lastly, in the third test, since there was an slight improvement in the second test compared to the first one,i retained the second test's optimizations and doubled the cache line size.
+By looking at this [chart](#results) and at the intial graphs, we can see that the `specbzip` benchmark represents similar results with the `spechmmer` benchmark. Thus, i applied the exact same tests on the `specbzip` benchmark as the `spechmmer`benchmark. 
 
 The commands used are as follows:
 
 ```bash
-$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity
 
-$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity and l1d
-
-$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity and l1d and cache line size
 ```
 
 
