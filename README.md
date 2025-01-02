@@ -182,27 +182,25 @@ sim_seconds                                  0.174671                       # Nu
 After taking into consideration these [results](#results) from step 1, for each characteristic the following conclusions were made:
 
 * Cache Line Size
-The effectiveness of the cache line size depends on spatial locality. For benchmarks like `sjeng` and `speclibm`, higher L2 miss rates might indicate poor spatial locality.
-
-* L2 Cache Associativity
-Extremely high L2 miss rates for `sjeng` and `speclibm` suggest either capacity or conflict misses. So we should increase associativity if increasing size alone does not resolve the high miss rates and specifically, moving from 4-way to 8-way or higher. Associativity improvements are often more effective when combined with larger cache sizes.
+The effectiveness of the cache line size depends on spatial locality. For benchmarks like `sjeng` and `speclibm`, higher L2 miss rates might indicate poor spatial locality. Despote that, i increased the cache line size in all of the benchmarks.
 
 * L2 Cache Size
-The highest L2 cache miss rates are in `speclibm` (0.999944) and `sjeng` (0.999972), indicating severe L2 capacity issues. Other benchmarks like specbzip, specmcf, and spechmm show manageable miss rates (< 0.3). Thus, an increase in L2 cache size significantly for `sjeng` and `speclibm` was tested, as these benchmarks heavily rely on L2.
+The highest L2 cache miss rates are in `speclibm` (0.999944) and `specsjeng` (0.999972), indicating severe L2 capacity issues. Other benchmarks like `specbzip`, `specmcf`, and `spechmmer` show manageable miss rates (< 0.3). Thus, an increase in L2 cache size significantly for `specsjeng` and `speclibm` was tested, as these benchmarks heavily rely on L2. An increase was also tested in the `spechmmer` and `specbzip`.
 
-* L1 Data Cache Associativity
-Moderate miss rates for `sjeng` and `speclibm` suggest potential conflict misses. An increase in associativity for L1 data cache for `sjeng` and `speclibm` was tested.
+* L2 Cache Associativity
+As mentioned above, the `speclibm` and `specsjeng` showed a high miss rate for the L2 cache, so an increase in its associativity was also tested. Moreover, an increase in the associativity of the L2 cache was tested for the `spehmmer` and `specbzip` benchmarks aswell.
 
 * L1 Data Cache Size
+Again, `specsjeng` (0.121831) and `speclibm` (0.060972) show relatively higher L1 data cache miss rates compared to others. Other benchmarks have very low miss rates, indicating sufficient L1 data cache size. So an increase in L1 data cache size specifically for `specsjeng` and `speclibm` is much needed. Also, i tested an increase in the size of the L1 cache in `spechmmer` and `specbzip` aswell.
 
-Again, `sjeng` (0.121831) and `speclibm` (0.060972) show relatively higher L1 data cache miss rates compared to others. Other benchmarks have very low miss rates, indicating sufficient L1 data cache size. Increase L1 data cache size specifically for `sjeng` and `speclibm`. These benchmarks appear to have larger data sets or higher spatial locality.
-
-* L1 Instruction Cache Associativity
-no change
+* L1 Data Cache Associativity
+Moderate miss rates for `specsjeng` and `speclibm` suggest potential conflict misses. Thus, an increase in associativity for L1 data cache for `specsjeng` and `speclibm` was tested. Also, i tested an increase in the associativity of the L1 cache in `spechmmer` and `specbzip` aswell.
 
 * L1 Instruction Cache Size
-no change 
+The only benchmark that showed a high miss rate for the L1 instruction cache, was the `specmcf`. So an increase in the size of the l1 instruction cache was tested.
 
+* L1 Instruction Cache Associativity
+As mentioned above, the `specmcf` showed a high miss rate for the L1 instruction cache, so an increase in its associativity was also tested.
 
 ## SPECLIBM
 
