@@ -286,10 +286,18 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/4 configs/example/se.py --cp
 ```
 ![opt_specbzip](https://github.com/user-attachments/assets/2ee0d86a-6d24-4d1f-8993-210a5a938ae1)
 
+## STEP3: Cost function
+
+![Formula](https://latex.codecogs.com/png.latex?\bg_white%20f%20=%20a%20\cdot%20\frac{\text{L1%20instruction%20cache%20size}}{32%20\text{kB}}%20+%20b%20\cdot%20\frac{\text{L1%20data%20cache%20size}}{64%20\text{kB}}%20+%20c%20\cdot%20\frac{\text{L2%20cache%20size}}{2%20\text{MB}}%20+%20d%20\cdot%20\frac{\text{L1%20instruction%20cache%20associativity}}{2}%20+%20e%20\cdot%20\frac{\text{L1%20data%20cache%20associativity}}{2}%20+%20f%20\cdot%20\frac{\text{L2%20cache%20associativity}}{8}%20+%20g%20\cdot%20\frac{\text{Cache%20line%20size}}{64%20\text{kB}})
+
+
+
+
 
 # REFERENCES
 
 [GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)
 [GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)
+[Caches](https://courses.cs.washington.edu/courses/cse378/07au/lectures/L18-Cache-Wrap-up.pdf)
 
 
