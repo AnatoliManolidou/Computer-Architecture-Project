@@ -202,7 +202,7 @@ The only benchmark that showed a high miss rate for the L1 instruction cache, wa
 * L1 Instruction Cache Associativity
 As mentioned above, the `specmcf` showed a high miss rate for the L1 instruction cache, so an increase in its associativity was also tested.
 
-Lastly, this [python code]() was used in order to obtain all of the following graphs.
+Lastly, this [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/optimizations_graph.py) was used in order to obtain all of the following graphs.
 
 ## SPECLIBM
 
@@ -284,7 +284,7 @@ The commands used are as follows:
 
 # REFERENCES
 
-[GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)
+[GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)\n
 [GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)
 
 
