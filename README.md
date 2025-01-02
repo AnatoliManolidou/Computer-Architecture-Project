@@ -14,6 +14,11 @@ From the `config.ini` file:
 |Cache line|`line 155:`  "cache_line_size": 64|
 
 
+l1d assoc = 2
+l1i assoc = 2
+l2 assoc = 8
+
+
 ### Second Question. Benchmark analysis
 
 These are the commands that were used:
@@ -34,7 +39,7 @@ $ ./build/ARM/gem5.opt -d spec_results/speclibm configs/example/se.py --cpu-type
 And these are the results that were extracted from the `stats.txt` file of each benchmark:
 
 # Results
- | Characteristics | specbzip | specmcf | spechmmer | sjeng | speclibm |
+ | Characteristics | specbzip | specmcf | spechmmer | specsjeng | speclibm |
  | ------ | ------ | ------ | ------ | ------ | ------ |
  | Execution time |`line 12:` 0.083982|`line12:` 0.064955 |`line 12:` 0.05936 |`line 12:` 0.513528 |`line 12:` 0.174671 |
  | CPI |`line 29:` 1.679650|`line 29:` 1.299095|`line 29:` 1.187917 |`line 29:` 10.270554 |`line 29:` 3.493415 |
@@ -147,7 +152,7 @@ and lines 160-164
                 1000
             ],
 ```
-Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/Part2_Graphs2.py) that was used before (now modified to extract only the graph for execution time) we obtained the following graphs:
+Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/Part2_Graphs2.py) that was used before (now modified to extract only the graph for execution time) the following graphs were obtained:
 ![execution_time_1GHz](https://github.com/user-attachments/assets/fa803096-e3f1-4b4b-9cf7-0a593e924aa2)
 ![execution_time_3GHz](https://github.com/user-attachments/assets/8db07496-97ab-4749-8442-98d31d7ff7d7)
 
@@ -177,32 +182,109 @@ sim_seconds                                  0.174671                       # Nu
 After taking into consideration these [results](#results) from step 1, for each characteristic the following conclusions were made:
 
 * Cache Line Size
-The effectiveness of the cache line size depends on spatial locality. For benchmarks like `sjeng` and `speclibm`, higher L2 miss rates might indicate poor spatial locality.
-
-* L2 Cache Associativity
-Extremely high L2 miss rates for `sjeng` and `speclibm` suggest either capacity or conflict misses. So we should increase associativity if increasing size alone does not resolve the high miss rates and specifically, moving from 4-way to 8-way or higher. Associativity improvements are often more effective when combined with larger cache sizes.
+The effectiveness of the cache line size depends on spatial locality. For benchmarks like `sjeng` and `speclibm`, higher L2 miss rates might indicate poor spatial locality. Despote that, i increased the cache line size in all of the benchmarks.
 
 * L2 Cache Size
-The highest L2 cache miss rates are in `speclibm` (0.999944) and `sjeng` (0.999972), indicating severe L2 capacity issues. Other benchmarks like specbzip, specmcf, and spechmm show manageable miss rates (< 0.3). Thus, an increase in L2 cache size significantly for `sjeng` and `speclibm` was tested, as these benchmarks heavily rely on L2.
+The highest L2 cache miss rates are in `speclibm` (0.999944) and `specsjeng` (0.999972), indicating severe L2 capacity issues. Other benchmarks like `specbzip`, `specmcf`, and `spechmmer` show manageable miss rates (< 0.3). Thus, an increase in L2 cache size significantly for `specsjeng` and `speclibm` was tested, as these benchmarks heavily rely on L2. An increase was also tested in the `spechmmer` and `specbzip`.
 
-* L1 Data Cache Associativity
-Moderate miss rates for `sjeng` and `speclibm` suggest potential conflict misses. An increase in associativity for L1 data cache for `sjeng` and `speclibm` was tested.
+* L2 Cache Associativity
+As mentioned above, the `speclibm` and `specsjeng` showed a high miss rate for the L2 cache, so an increase in its associativity was also tested. Moreover, an increase in the associativity of the L2 cache was tested for the `spehmmer` and `specbzip` benchmarks aswell.
 
 * L1 Data Cache Size
+Again, `specsjeng` (0.121831) and `speclibm` (0.060972) show relatively higher L1 data cache miss rates compared to others. Other benchmarks have very low miss rates, indicating sufficient L1 data cache size. So an increase in L1 data cache size specifically for `specsjeng` and `speclibm` is much needed. Also, i tested an increase in the size of the L1 cache in `spechmmer` and `specbzip` aswell.
 
-Agaim, `sjeng` (0.121831) and `speclibm` (0.060972) show relatively higher L1 data cache miss rates compared to others. Other benchmarks have very low miss rates, indicating sufficient L1 data cache size. Increase L1 data cache size specifically for `sjeng` and `speclibm`. These benchmarks appear to have larger data sets or higher spatial locality.
-
-* L1 Instruction Cache Associativity
-no change
+* L1 Data Cache Associativity
+Moderate miss rates for `specsjeng` and `speclibm` suggest potential conflict misses. Thus, an increase in associativity for L1 data cache for `specsjeng` and `speclibm` was tested. Also, i tested an increase in the associativity of the L1 cache in `spechmmer` and `specbzip` aswell.
 
 * L1 Instruction Cache Size
-no change 
+The only benchmark that showed a high miss rate for the L1 instruction cache, was the `specmcf`. So an increase in the size of the l1 instruction cache was tested.
 
+* L1 Instruction Cache Associativity
+As mentioned above, the `specmcf` showed a high miss rate for the L1 instruction cache, so an increase in its associativity was also tested.
 
+Lastly, this [python code]() was used in order to obtain all of the following graphs.
+
+## SPECLIBM
+
+From the [chart](#results), it is evident that the miss rate of the L1 data cache is quite high. To address this, in the first test, I doubled both the associativity and size of the L1 data cache. Similarly, the L2 cache also exhibited a high miss rate, so in the second test, I doubled the size and associativity of the L2 cache while retaining the L1D configurations from the first test. For the third test, I used the configurations from the first test but doubled the cache line size and associativity of the L2 cache. In the fourth test, I retained the configurations from the third test and further doubled the cache line size. Finally, in the fifth test, I evaluated the effect of increasing only the cache line size (doubling the initial size).
+
+The commands used are as follows:
+
+```bash
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=8 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000  
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000 
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/4 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000 
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/speclibm/5 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=8 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/470.lbm/src/speclibm -o "20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of" -I 100000000
+```
+![opt_speclibm](https://github.com/user-attachments/assets/fa9b6993-3a43-412f-a2eb-0a32c63ee1dd)
+
+## SPECMCF
+
+From the [chart](#results), it is apparent that the L1 instruction cache has a high miss rate. To mitigate this, in the first test, I doubled both the size and associativity of the L1 instruction cache. In the second test, I quadrupled these parameters. For the third test, I reverted the L1I size to 64kB and its associativity to 4, but doubled the cache line size instead.
+
+The commands used are as follows:
+
+```bash
+$ ./build/ARM/gem5.opt -d spec_results_opt/specmcf/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=64kB --l2_size=2MB --l1i_assoc=4 --l1d_assoc=2 --l2_assoc=8 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/429.mcf/src/specmcf -o "spec_cpu2006/429.mcf/data/inp.in" -I 100000000 
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/specmcf/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=128kB --l2_size=2MB --l1i_assoc=8 --l1d_assoc=2 --l2_assoc=8 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/429.mcf/src/specmcf -o "spec_cpu2006/429.mcf/data/inp.in" -I 100000000
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/specmcf/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=64kB --l2_size=2MB --l1i_assoc=4 --l1d_assoc=2 --l2_assoc=8 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/429.mcf/src/specmcf -o "spec_cpu2006/429.mcf/data/inp.in" -I 100000000 
+```
+![opt_specmcf](https://github.com/user-attachments/assets/c8741e36-5334-48d5-822a-8d29c001d588)
+
+## SPECSJENG
+
+From the [chart](#results), `specsjeng` exhibits a very high CPI. Both the L1 data and L2 caches have significant miss rates. To address these, in the first test, I doubled the size and associativity of the L1 data cache. In the second test, I applied the same doubling to the L2 cache. For the third test, I combined the configurations of the first two tests. Finally, in the fourth test, I added a doubling of the cache line size on top of the third test’s configurations.
+
+The commands used are as follows:
+
+```bash
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=8 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l1d size = 64 , double l1d associativity = 4
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l2 size = 4MB , double l2 associativity = 16
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l2 size = 4MB , double l2 associativity = 16 double l1d size = 64 , double l1d associativity = 4
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/4 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l2 size = 4MB , double l2 associativity = 16 double l1d size = 64 , double l1d associativity = 4, double cache line size = 128
+```
+![specsjeng](https://github.com/user-attachments/assets/c93b44c9-b321-4a93-8723-12a5555b2687)
+
+## SPECHMMER
+
+By looking at this [chart](#results), we can see that the `spechmmer` benchmark already exhibits a satisfactory CPI, being close to 1. However, since the L2 cache had the highest miss rate among the caches, I first doubled its size and associativity. Then, in the second test i kept the configurations of the first test and doubled the size of the L1 data cache and its associativity aswell. Lastly, in the third test, since there was an slight improvement in the second test compared to the first one,i retained the second test's optimizations and doubled the cache line size.
+
+The commands used are as follows:
+
+```bash
+$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity and l1d
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity and l1d and cache line size
+```
+![opt_spechmmer](https://github.com/user-attachments/assets/9637c5e4-fa54-4c4f-ad7c-db2871aea2e8)
+
+## SPECBZIP
+
+By looking at this [chart](#results) and at the intial graphs, we can see that the `specbzip` benchmark represents similar results with the `spechmmer` benchmark. Thus, i applied the exact same tests on the `specbzip` benchmark as the `spechmmer`benchmark. 
+
+The commands used are as follows:
+
+```bash
+
+```
+![opt_specbzip](https://github.com/user-attachments/assets/2ee0d86a-6d24-4d1f-8993-210a5a938ae1)
 
 
 # REFERENCES
 
 [GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)
+[GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)
 
 
