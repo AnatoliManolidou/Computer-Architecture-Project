@@ -288,41 +288,51 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/4 configs/example/se.py --cp
 
 ## STEP3: Cost function
 
-The cost function that we were asked to design, has to show the effect of the increase of all the characteristics that were tested in the previous section. Since we had to emphasize the impact on both speed and the size of the circuit, this is the first aproach on the concept:\
+The cost function we were asked to design must capture the effects of increasing all the characteristics tested in the previous section. Since we need to emphasize both the system’s speed and the circuit's size, my initial approach to defining the concept is as follows:
 
-![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}%20=%20\alpha%20\cdot%20|\text{CPI}%20-%201|%20+%20\beta%20\cdot%20\text{Resource%20Cost})
+![Cost Function](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}%20=%20|\text{CPI}%20-%201|%20+%20\text{Resource%20Cost})
 
-As you can see, there are two subfunctions:
+As shown, the function consists of two main components:
 
-![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\%20\alpha%20\cdot%20|\text{CPI}%20-%201|)
+* ![Speed Cost](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}_1%20=%20|\text{CPI}%20-%201|)
 
-![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\%20\beta%20\cdot%20\text{Resource%20Cost})
+This term represents the performance cost. A higher CPI indicates a slower system, so deviations from the ideal CPI of 1 are penalized.
 
+* ![Resource Cost](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}_2%20=%20\text{Resource%20Cost})
 
+This term quantifies the hardware cost associated with the system's configuration. Since increases in cache size and associativity have varying impacts on the circuit's size and complexity, the resource cost is expanded into the following detailed formula:
 
-![Formula](https://latex.codecogs.com/png.latex?\bg_white%20f%20=%20a%20\cdot%20\frac{\text{L1%20instruction%20cache%20size}}{32%20\text{kB}}%20+%20b%20\cdot%20\frac{\text{L1%20data%20cache%20size}}{64%20\text{kB}}%20+%20c%20\cdot%20\frac{\text{L2%20cache%20size}}{2%20\text{MB}}%20+%20d%20\cdot%20\frac{\text{L1%20instruction%20cache%20associativity}}{2}%20+%20e%20\cdot%20\frac{\text{L1%20data%20cache%20associativity}}{2}%20+%20f%20\cdot%20\frac{\text{L2%20cache%20associativity}}{8}%20+%20g%20\cdot%20\frac{\text{Cache%20line%20size}}{64%20\text{kB}})
+![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost2}%20=%20a%20\cdot%20\frac{\text{L1%20instruction%20cache%20size}}{32%20\text{kB}}%20+%20b%20\cdot%20\frac{\text{L1%20data%20cache%20size}}{64%20\text{kB}}%20+%20c%20\cdot%20\frac{\text{L2%20cache%20size}}{2%20\text{MB}}%20+%20d%20\cdot%20\frac{\text{L1%20instruction%20cache%20associativity}}{2}%20+%20e%20\cdot%20\frac{\text{L1%20data%20cache%20associativity}}{2}%20+%20f%20\cdot%20\frac{\text{L2%20cache%20associativity}}{8}%20+%20g%20\cdot%20\frac{\text{Cache%20line%20size}}{64%20\text{kB}})
 
-Firstly, for the above function i χχχχχχ that speed was more important than the size 
+In this formulation:
 
-We know that L1 is more expensive than L2 since L2 has a lower cost per bit compared to L1 and L1 has a higher cost per bit due to speed and proximity to the core, so a bigger coefficient for L1 was applied.\
+`a`, `b`, `c`, `d`, `e`, `f`, and `g` are weights that reflect the relative cost impact of each parameter.
+The denominators represent baseline values, allowing the function to express the relative increase in cost compared to standard configurations.
 
-An increase in the cache line size is the least coslty change, thus a very small coefficient was chosen. Increasing the cache line size has a moderate impact on both speed and circuit size.\
+We know that **L1 caches are more expensive than L2 caches**. L2 caches have a lower cost per bit due to their greater distance from the core and slower access times. On the other hand, L1 caches, being closer to the core, have a higher cost per bit due to their speed and proximity. Therefore, a larger coefficient was assigned to L1 caches to reflect their higher impact on the overall cost.
 
-We also know that a higher associativity results in ore complex circuits. Bigger block size can improve hit rate (due to spatial locality), but transfer time increases.\
+An **increase in cache line size** is the least costly change in terms of circuit complexity. Cache line size has a moderate effect on both speed and circuit size. Larger block sizes can improve hit rates (due to spatial locality), but they also increase transfer time. As such, a relatively small coefficient was chosen for this parameter.
 
-Higher associativity means more data is read out simultaneously, leading to a roughly linear increase in dynamic power consumption.\
+Higher **associativity** results in more complex circuits. Associativity increases the number of comparators and multiplexers, which directly affects the circuit's physical size and design complexity. While it can improve hit rates, higher associativity also increases dynamic power consumption approximately linearly as more data is read out simultaneously. The coefficients for associativity were chosen to reflect these trade-offs.
 
-Cache Size: Larger caches require more physical space on the chip, increasing the overall size of the circuit. ​ This can be a significant cost in terms of chip area.\
+Finally, the coefficients assigned to cache size and associativity balance their relative costs:
+- **Cache size**: Larger caches require more physical space on the chip, significantly increasing the circuit's size. 
+- **Associativity**: Higher associativity adds to design complexity and power consumption.
 
-Associativity: Higher associativity increases the complexity of the cache design, requiring more comparators and multiplexers. This also increases the physical size of the circuit and the complexity of the design.\
+### Coefficients
+The coefficients used in the cost function are as follows:
+- `a = 0.175` (L1 instruction cache size)
+- `b = 0.175` (L1 data cache size)
+- `c = 0.25` (L2 cache size)
+- `d = 0.1` (L1 instruction cache associativity)
+- `e = 0.1` (L1 data cache associativity)
+- `f = 0.15` (L2 cache associativity)
+- `g = 0.05` (Cache line size)
 
-a = (0.35/2)\
-b = (0.35/2)\
-c = (0.25)\
-d = (0.1)\
-e = (0.1)\
-f = (0.15)\
-g = (0.05)
+These coefficients were chosen to represent the relative impact of each parameter on the system’s speed and circuit size, ensuring a balanced and accurate cost function.
+
+After applying 
+
 
 
 
