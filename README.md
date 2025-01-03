@@ -59,7 +59,7 @@ Below there are 5 different graphs, each representing one of the characteristics
 
 ### Third question. Effect of Changing CPU Frequency
 
-After running the benchmarks for the two new frequency configurations, here are the results related to the clock from the stats.txt files. These snippets were derived from the specmcf benchmark, where the clock values were the same across all benchmarks.
+After running the benchmarks for the two new frequency configurations, here are the results related to the clock from the `stats.txt` files. These snippets were derived from the `specmcf` benchmark, where the clock values were the same across all benchmarks.
 
 * **Default CPU clock frequency**:
 
@@ -290,7 +290,24 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/4 configs/example/se.py --cp
 
 ![Formula](https://latex.codecogs.com/png.latex?\bg_white%20f%20=%20a%20\cdot%20\frac{\text{L1%20instruction%20cache%20size}}{32%20\text{kB}}%20+%20b%20\cdot%20\frac{\text{L1%20data%20cache%20size}}{64%20\text{kB}}%20+%20c%20\cdot%20\frac{\text{L2%20cache%20size}}{2%20\text{MB}}%20+%20d%20\cdot%20\frac{\text{L1%20instruction%20cache%20associativity}}{2}%20+%20e%20\cdot%20\frac{\text{L1%20data%20cache%20associativity}}{2}%20+%20f%20\cdot%20\frac{\text{L2%20cache%20associativity}}{8}%20+%20g%20\cdot%20\frac{\text{Cache%20line%20size}}{64%20\text{kB}})
 
-We know that L1 is more expensive than L2 since L2 has a lower cost per bit compared to L1 and L1 has a higher cost per bit due to speed and proximity to the core, so a bigger coefficient for L1 was applied. An increase in the cache line size is the least coslty 
+Firstly, for the above function i χχχχχχ that speed was more important than the size 
+
+We know that L1 is more expensive than L2 since L2 has a lower cost per bit compared to L1 and L1 has a higher cost per bit due to speed and proximity to the core, so a bigger coefficient for L1 was applied. An increase in the cache line size is the least coslty change, thus a very small coefficient was chosen. We also know that a higher associativity results in ore complex circuits. Bigger block size can improve hit rate (due to spatial locality), but transfer time increases. From all the tests we can 
+
+Higher associativity means more data is read out simultaneously, leading to a roughly linear increase in dynamic power consumption.
+
+Cache Size: Larger caches require more physical space on the chip, increasing the overall size of the circuit. ​ This can be a significant cost in terms of chip area. ​
+Associativity: Higher associativity increases the complexity of the cache design, requiring more comparators and multiplexers. This also increases the physical size of the circuit and the complexity of the design. 
+
+a =  \
+b =  \
+c =  \
+d =  \
+e =  \
+f =  \
+g = 
+
+
 
 
 
@@ -298,8 +315,10 @@ We know that L1 is more expensive than L2 since L2 has a lower cost per bit comp
 
 # REFERENCES
 
-[GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)
-[GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)
-[Caches](https://courses.cs.washington.edu/courses/cse378/07au/lectures/L18-Cache-Wrap-up.pdf)
+[GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)\
+[GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)\
+[Caches(1)](https://courses.cs.washington.edu/courses/cse378/07au/lectures/L18-Cache-Wrap-up.pdf)\
+[Ccahes(2)](https://courses.cs.washington.edu/courses/cse378/09au/lectures/cse378au09-20.pdf)\
+[Cache Memory Design Trade-offs](https://www2.it.uu.se/research/publications/lic/2003-009/2003-009.pdf)
 
 
