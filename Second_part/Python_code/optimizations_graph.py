@@ -55,7 +55,7 @@ def plot_cpi(stats_files, custom_labels):
     # Plot the CPI values
     plt.figure(figsize=(8, 6))
     plt.plot(custom_labels_mapped, cpi_values, marker='o', linestyle='-', color='b')
-    plt.title("CPI Across different configurations")
+    plt.title("CPI Across different configurations for SPECSJENG")
     plt.xlabel("")
     plt.ylabel("CPI (Cycles per Instruction)")
     plt.grid(True)
@@ -97,7 +97,9 @@ benchmarks = {
             "2": "Double L1D size\n and associativity",
             "3": "Double L2 size\n and associativity",
             "4": "Double L2 and L1D size\n and associativity",
-            "5": "Double L2 and L1D size and\n associativity and double cache line size"
+            "5": "Double L2 and L1D size and\n associativity and double cache line size",
+            "6": "Double the size of the L1 data cache",
+            "7": "Double the associativity of the L1 data cache"
         }
     },
     "specbzip": {
