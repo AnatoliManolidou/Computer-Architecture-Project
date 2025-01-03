@@ -292,20 +292,25 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/4 configs/example/se.py --cp
 
 Firstly, for the above function i χχχχχχ that speed was more important than the size 
 
-We know that L1 is more expensive than L2 since L2 has a lower cost per bit compared to L1 and L1 has a higher cost per bit due to speed and proximity to the core, so a bigger coefficient for L1 was applied. An increase in the cache line size is the least coslty change, thus a very small coefficient was chosen. We also know that a higher associativity results in ore complex circuits. Bigger block size can improve hit rate (due to spatial locality), but transfer time increases. From all the tests we can 
+We know that L1 is more expensive than L2 since L2 has a lower cost per bit compared to L1 and L1 has a higher cost per bit due to speed and proximity to the core, so a bigger coefficient for L1 was applied.\
 
-Higher associativity means more data is read out simultaneously, leading to a roughly linear increase in dynamic power consumption.
+An increase in the cache line size is the least coslty change, thus a very small coefficient was chosen. Increasing the cache line size has a moderate impact on both speed and circuit size.\
 
-Cache Size: Larger caches require more physical space on the chip, increasing the overall size of the circuit. ​ This can be a significant cost in terms of chip area. ​
-Associativity: Higher associativity increases the complexity of the cache design, requiring more comparators and multiplexers. This also increases the physical size of the circuit and the complexity of the design. 
+We also know that a higher associativity results in ore complex circuits. Bigger block size can improve hit rate (due to spatial locality), but transfer time increases.\
 
-a =  \
-b =  \
-c =  \
-d =  \
-e =  \
-f =  \
-g = 
+Higher associativity means more data is read out simultaneously, leading to a roughly linear increase in dynamic power consumption.\
+
+Cache Size: Larger caches require more physical space on the chip, increasing the overall size of the circuit. ​ This can be a significant cost in terms of chip area.\
+
+Associativity: Higher associativity increases the complexity of the cache design, requiring more comparators and multiplexers. This also increases the physical size of the circuit and the complexity of the design.\
+
+a = (0.35/2)\
+b = (0.35/2)\
+c = (0.25)\
+d = (0.1)\
+e = (0.1)\
+f = (0.15)\
+g = (0.05)
 
 
 
