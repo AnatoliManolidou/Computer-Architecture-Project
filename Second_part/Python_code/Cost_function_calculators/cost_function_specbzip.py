@@ -1,4 +1,4 @@
-# Given data for each benchmark (updated with SPECHMMER configurations)
+# Given data for each benchmark 
 benchmarks = [
     {'name': 'SPECBZIP0', 'L1i_size': 32, 'L1d_size': 64, 'L2_size': 2, 'L1i_assoc': 2, 'L1d_assoc': 2, 'L2_assoc': 8, 'cacheline_size': 64, 'CPI': 1.67965},
     {'name': 'SPECBZIP1', 'L1i_size': 32, 'L1d_size': 64, 'L2_size': 4, 'L1i_assoc': 2, 'L1d_assoc': 2, 'L2_assoc': 16, 'cacheline_size': 64, 'CPI': 1.59611},
