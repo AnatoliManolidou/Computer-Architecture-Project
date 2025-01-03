@@ -367,10 +367,10 @@ After applying
 
 From the above chart, as regards the best architectures for both cost & performance, for each benchmark we can conclude the following:
 
-`SPECLIBM`: **SPECLIBM5** (Cost: 2.0405, CPI: 1.99046)
-`SPECMCF`: **SPECMCF0** (Cost: 1.2991, CPI: 1.29910)
-`SPECSJENG`: **SPECSJENG5** (Cost: 1.5125, CPI: 1.33754)
-`SPECHMMER`: **SPECHMMER0** (Cost: 1.1879, CPI: 1.18792)
+`SPECLIBM`: **SPECLIBM5** (Cost: 2.0405, CPI: 1.99046)\
+`SPECMCF`: **SPECMCF0** (Cost: 1.2991, CPI: 1.29910)\
+`SPECSJENG`: **SPECSJENG5** (Cost: 1.5125, CPI: 1.33754)\
+`SPECHMMER`: **SPECHMMER0** (Cost: 1.1879, CPI: 1.18792)\
 `SPECBZIP`: **SPECBZIP0** (Cost: 1.6797, CPI: 1.67965)
 
 These architectures represent the best balance of minimizing cost and maximizing performance for each benchmark.
