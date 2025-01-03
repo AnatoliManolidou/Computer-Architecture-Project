@@ -324,6 +324,7 @@ g = (0.05)
 [GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)\
 [Caches(1)](https://courses.cs.washington.edu/courses/cse378/07au/lectures/L18-Cache-Wrap-up.pdf)\
 [Ccahes(2)](https://courses.cs.washington.edu/courses/cse378/09au/lectures/cse378au09-20.pdf)\
-[Cache Memory Design Trade-offs](https://www2.it.uu.se/research/publications/lic/2003-009/2003-009.pdf)
+[Cache Memory Design Trade-offs](https://www2.it.uu.se/research/publications/lic/2003-009/2003-009.pdf)\
+[Associativity](https://gab.wallawalla.edu/~curt.nelson/cptr380/lecture/chapter5%20-%20set%20associative%20caches.pdf)
 
 
