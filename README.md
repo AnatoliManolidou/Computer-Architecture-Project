@@ -13,12 +13,6 @@ From the `config.ini` file:
 |L2|`line 994/line 1018:` [system.l2]/size=2097152|
 |Cache line|`line 155:`  "cache_line_size": 64|
 
-
-l1d assoc = 2
-l1i assoc = 2
-l2 assoc = 8
-
-
 ### Second Question. Benchmark analysis
 
 These are the commands that were used:
@@ -69,7 +63,6 @@ system.cpu_clk_domain.clock                       500                       # Cl
 ```bash
 system.clk_domain.clock                          1000                       # Clock period in ticks
 ```
-
 
 * **Setting the CPU clock frequency at 1GHz**:
 
@@ -122,7 +115,7 @@ system.clk_domain.clock                          1000                       # Cl
 ### Final conclusions:
 
 * Default frequency:
-  The CPU is clocked at 2GHz. This is because the clock period is 500 ticks, and using the formula $\frac{10^{12}}{500}$ gives us 2GHz. The system overall is clocked at 1GHz, as the clock period is 1000 ticks, and $\frac{10^{12}}{1000}$ gives us 1GHz.
+The CPU is clocked at 2GHz. This is because the clock period is 500 ticks, and using the formula $\frac{10^{12}}{500}$ gives us 2GHz. The system overall is clocked at 1GHz, as the clock period is 1000 ticks, and $\frac{10^{12}}{1000}$ gives us 1GHz.
 
 * 1GHz:
 The CPU is clocked at 1GHz. This is because the clock period is 1000 ticks, and $\frac{10^{12}}{1000}$
@@ -137,7 +130,8 @@ From all the above, we can see that when we change the `--cpu-clock=` configurat
 
 Upon inspecting the `config.json` file, we can see that the `clk_domain` and `cpu_clk_domain` are completely separate. Here are the relevant snippets from `config.json`:
 
-lines 114-118
+`lines 114-118`
+
 ```bash
 "clk_domain": {
             "name": "clk_domain", 
@@ -145,7 +139,9 @@ lines 114-118
                 1000
             ],
 ```
-and lines 160-164
+
+and `lines 160-164`
+
 ```bash
 "cpu_clk_domain": {
             "name": "cpu_clk_domain", 
