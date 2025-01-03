@@ -38,7 +38,8 @@ $ ./build/ARM/gem5.opt -d spec_results/speclibm configs/example/se.py --cpu-type
 ```
 And these are the results that were extracted from the `stats.txt` file of each benchmark:
 
-# Results
+<a id="results"></a>
+
  | Characteristics | specbzip | specmcf | spechmmer | specsjeng | speclibm |
  | ------ | ------ | ------ | ------ | ------ | ------ |
  | Execution time |`line 12:` 0.083982|`line12:` 0.064955 |`line 12:` 0.05936 |`line 12:` 0.513528 |`line 12:` 0.174671 |
@@ -58,7 +59,7 @@ Below there are 5 different graphs, each representing one of the characteristics
 
 ### Third question. Effect of Changing CPU Frequency
 
-After running the benchmarks for the two new frequency configurations, here are the results related to the clock from the stats.txt files. These snippets were derived from the specmcf benchmark, where the clock values were the same across all benchmarks.
+After running the benchmarks for the two new frequency configurations, here are the results related to the clock from the `stats.txt` files. These snippets were derived from the `specmcf` benchmark, where the clock values were the same across all benchmarks.
 
 * **Default CPU clock frequency**:
 
@@ -245,15 +246,14 @@ From the [chart](#results), `specsjeng` exhibits a very high CPI. Both the L1 da
 The commands used are as follows:
 
 ```bash
-$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=8 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l1d size = 64 , double l1d associativity = 4
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=2MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=8 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000 
 
-$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l2 size = 4MB , double l2 associativity = 16
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000 
 
-$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l2 size = 4MB , double l2 associativity = 16 double l1d size = 64 , double l1d associativity = 4
-
-$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/4 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000  > double l2 size = 4MB , double l2 associativity = 16 double l1d size = 64 , double l1d associativity = 4, double cache line size = 128
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000
+$ ./build/ARM/gem5.opt -d spec_results_opt/specsjeng/4 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/458.sjeng/src/specsjeng -o "spec_cpu2006/458.sjeng/data/test.txt" -I 100000000
 ```
-![specsjeng](https://github.com/user-attachments/assets/c93b44c9-b321-4a93-8723-12a5555b2687)
+![opt2_specsjeng](https://github.com/user-attachments/assets/a0a4b94e-7579-488f-8bc0-87fdbad0ed7d)
 
 ## SPECHMMER
 
@@ -262,11 +262,11 @@ By looking at this [chart](#results), we can see that the `spechmmer` benchmark 
 The commands used are as follows:
 
 ```bash
-$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity
+$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/1 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000
 
-$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity and l1d
+$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 
 
-$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000 > double l2 size and l2 associativity and l1d and cache line size
+$ ./build/ARM/gem5.opt -d spec_results_opt/spechmmer/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/456.hmmer/src/spechmmer -o "--fixed 0 --mean 325 --num 45000 --sd 200 --seed 0 spec_cpu2006/456.hmmer/data/bombesin.hmm" -I 100000000
 ```
 ![opt_spechmmer](https://github.com/user-attachments/assets/9637c5e4-fa54-4c4f-ad7c-db2871aea2e8)
 
@@ -277,14 +277,113 @@ By looking at this [chart](#results) and at the intial graphs, we can see that t
 The commands used are as follows:
 
 ```bash
+$ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/2 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=64kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=2 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/401.bzip2/src/specbzip -o "spec_cpu2006/401.bzip2/data/input.program 10" -I 100000000 
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/3 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=64 --cpu-clock=1GHz -c spec_cpu2006/401.bzip2/src/specbzip -o "spec_cpu2006/401.bzip2/data/input.program 10" -I 100000000
+
+$ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/4 configs/example/se.py --cpu-type=MinorCPU --caches --l2cache --l1d_size=128kB --l1i_size=32kB --l2_size=4MB --l1i_assoc=2 --l1d_assoc=4 --l2_assoc=16 --cacheline_size=128 --cpu-clock=1GHz -c spec_cpu2006/401.bzip2/src/specbzip -o "spec_cpu2006/401.bzip2/data/input.program 10" -I 100000000
 
 ```
 ![opt_specbzip](https://github.com/user-attachments/assets/2ee0d86a-6d24-4d1f-8993-210a5a938ae1)
 
+## STEP3: Cost function
+
+The cost function we were asked to design must capture the effects of increasing all the characteristics tested in the previous section. Since we need to emphasize both the system’s speed and the circuit's size, my initial approach to defining the concept is as follows:
+
+![Cost Function](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}%20=%20|\text{CPI}%20-%201|%20+%20\text{Resource%20Cost})
+
+As shown, the function consists of two main components:
+
+* ![Speed Cost](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}_1%20=%20|\text{CPI}%20-%201|)
+
+This term represents the performance cost. A higher CPI indicates a slower system, so deviations from the ideal CPI of 1 are penalized.
+
+* ![Resource Cost](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}_2%20=%20\text{Resource%20Cost})
+
+This term quantifies the hardware cost associated with the system's configuration. Since increases in cache size and associativity have varying impacts on the circuit's size and complexity, the resource cost is expanded into the following detailed formula:
+
+![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost2}%20=%20a%20\cdot%20\frac{\text{L1%20instruction%20cache%20size}}{32%20\text{kB}}%20+%20b%20\cdot%20\frac{\text{L1%20data%20cache%20size}}{64%20\text{kB}}%20+%20c%20\cdot%20\frac{\text{L2%20cache%20size}}{2%20\text{MB}}%20+%20d%20\cdot%20\frac{\text{L1%20instruction%20cache%20associativity}}{2}%20+%20e%20\cdot%20\frac{\text{L1%20data%20cache%20associativity}}{2}%20+%20f%20\cdot%20\frac{\text{L2%20cache%20associativity}}{8}%20+%20g%20\cdot%20\frac{\text{Cache%20line%20size}}{64%20\text{kB}})
+
+In this formulation:
+
+`a`, `b`, `c`, `d`, `e`, `f`, and `g` are weights that reflect the relative cost impact of each parameter.
+The denominators represent baseline values, allowing the function to express the relative increase in cost compared to standard configurations.
+
+We know that **L1 caches are more expensive than L2 caches**. L2 caches have a lower cost per bit due to their greater distance from the core and slower access times. On the other hand, L1 caches, being closer to the core, have a higher cost per bit due to their speed and proximity. Therefore, a larger coefficient was assigned to L1 caches to reflect their higher impact on the overall cost.
+
+An **increase in cache line size** is the least costly change in terms of circuit complexity. Cache line size has a moderate effect on both speed and circuit size. Larger block sizes can improve hit rates (due to spatial locality), but they also increase transfer time. As such, a relatively small coefficient was chosen for this parameter.
+
+Higher **associativity** results in more complex circuits. Associativity increases the number of comparators and multiplexers, which directly affects the circuit's physical size and design complexity. While it can improve hit rates, higher associativity also increases dynamic power consumption approximately linearly as more data is read out simultaneously. The coefficients for associativity were chosen to reflect these trade-offs.
+
+Finally, the coefficients assigned to cache size and associativity balance their relative costs:
+- **Cache size**: Larger caches require more physical space on the chip, significantly increasing the circuit's size. 
+- **Associativity**: Higher associativity adds to design complexity and power consumption.
+
+### Coefficients
+The coefficients used in the cost function are as follows:
+- `a = 0.175` (L1 instruction cache size)
+- `b = 0.175` (L1 data cache size)
+- `c = 0.25` (L2 cache size)
+- `d = 0.1` (L1 instruction cache associativity)
+- `e = 0.1` (L1 data cache associativity)
+- `f = 0.15` (L2 cache associativity)
+- `g = 0.05` (Cache line size)
+
+These coefficients were chosen to represent the relative impact of each parameter on the system’s speed and circuit size, ensuring a balanced and accurate cost function.
+
+After using these [python code](), we have the following chart that represents the cost for each arcitecture of each benchmark: 
+
+|Benchmark|L1D Size|L1I Size|L2 Size|L1D Associativity|L1I Associativity|L2 Associativity|Cache line Size|CPI|Cost2|Cost1|Cost|
+|---------|--------|--------|-------|-----------------|-----------------|----------------|---------------|---|-----|-----|----|
+|SPECLIBM0|64kB|32kB|2MB|2|2|8|64B|3.49342|1.0000|2.4934|3.4934|
+|SPECLIBM1|128kB|32kB|2MB|4|2|8|64B|2.62326|1.2750|1.6233|2.8983|
+|SPECLIBM2|128kB|32kB|4MB|4|2|16|64B|3.92024|1.6750|2.9202|4.5952|
+|SPECLIBM3|128kB|32kB|2MB|4|2|16|128B|2.62326|1.4750|1.6233|3.0983|
+|SPECLIBM4|128kB|32kB|4MB|4|2|16|128B|2.62076|1.7250|1.6208|3.3458
+|SPECLIBM5|64kB|32kB|2MB|2|2|8|128B|1.99046|1.0500|0.9905|2.0405|
+|         |    |    |   | | | |    |       |      |      |      |
+|SPECMCF0|64kB|32kB|2MB|2|2|8|64B|1.29910|1.0000|0.2991|1.2991|
+|SPECMCF1|64kB|64kB|2MB|2|4|8|64B|1.13938|1.2750|0.1394|1.4144|
+|SPECMCF2|64kB|128kB|2MB|2|8|8|64B|1.13938|1.8250|0.1394|1.9644|
+|SPECMCF3|64kB|64kB|2MB|2|4|8|128B|1.11297|1.3250|0.1130|1.4380|
+|         |    |    |   | | | |    |       |      |      |      |
+|SPECSJENG0|64kB|32kB|2MB|2|2|8|64B|10.27055|1.0000|9.2706|10.2706|
+|SPECSJENG1|128kB|32kB|2MB|4|2|8|64B|7.04060|1.2750|6.0406|7.3156|
+|SPECSJENG2|64kB|32kB|4MB|2|2|16|64B|7.03982|1.4000|6.0398|7.4398|
+|SPECSJENG3|128kB|32kB|4MB|4|2|16|64B|7.03974|1.6750|6.0397|7.7147|
+|SPECSJENG4|128kB|32kB|4MB|4|2|16|128B|4.97296|1.7250|3.9730|5.6980|
+|SPECSJENG5|128kB|32kB|2MB|2|2|8|64B|1.33754|1.1750|0.3375|1.5125|
+|SPECSJENG6|64kB|32kB|2MB|4|2|8|64B|7.04056|1.1000|6.0406|7.1406|
+|         |    |    |   | | | |    |       |      |      |      |
+|SPECHMMER0|64kB|32kB|2MB|2|2|8|64B|1.18792|1.0000|0.1879|1.1879|
+|SPECHMMER1|64kB|32kB|4MB|2|2|16|64B|1.18530|1.4000|0.1853|1.5853|
+|SPECHMMER2|128kB|32kB|4MB|4|2|16|64B|1.18327|1.6750|0.1833|1.8583|
+|SPECHMMER3|128kB|32kB|4MB|4|2|16|128B|1.17879|1.7250|0.1788|1.9038|
+|         |    |    |   | | | |    |       |      |      |      |
+|SPECBZIP0|64kB|32kB|2MB|2|2|8|64B|1.67965|1.0000|0.6797|1.6797|
+|SPECBZIP1|64kB|32kB|4MB|2|2|16|64B|1.59611|1.4000|0.5961|1.9961|
+|SPECBZIP2|128kB|32kB|4MB|4|2|16|64B|1.56834|1.6750|0.5683|2.2433|
+|SPECBZIP3|128kB|32kB|4MB|4|2|16|128B|1.55565|1.7250|0.5556|2.2807|
+
+From the above chart, as regards the best architectures for both cost & performance, for each benchmark we can conclude the following:
+
+`SPECLIBM`: **SPECLIBM5** (Cost: 2.0405, CPI: 1.99046)\
+`SPECMCF`: **SPECMCF0** (Cost: 1.2991, CPI: 1.29910)\
+`SPECSJENG`: **SPECSJENG5** (Cost: 1.5125, CPI: 1.33754)\
+`SPECHMMER`: **SPECHMMER0** (Cost: 1.1879, CPI: 1.18792)\
+`SPECBZIP`: **SPECBZIP0** (Cost: 1.6797, CPI: 1.67965)
+
+These architectures represent the best balance of minimizing cost and maximizing performance for each benchmark.
+
+
 
 # REFERENCES
 
-[GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)\n
-[GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)
+[GEM5 stats](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)\
+[GEM5 cache](https://www.gem5.org/documentation/learning_gem5/part1/cache_config/)\
+[Caches(1)](https://courses.cs.washington.edu/courses/cse378/07au/lectures/L18-Cache-Wrap-up.pdf)\
+[Ccahes(2)](https://courses.cs.washington.edu/courses/cse378/09au/lectures/cse378au09-20.pdf)\
+[Cache Memory Design Trade-offs](https://www2.it.uu.se/research/publications/lic/2003-009/2003-009.pdf)\
+[Associativity](https://gab.wallawalla.edu/~curt.nelson/cptr380/lecture/chapter5%20-%20set%20associative%20caches.pdf)
 
 
