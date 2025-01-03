@@ -1,4 +1,4 @@
-# Given data for each benchmark 
+# Data for each benchmark 
 benchmarks = [
     {'name': 'SPECMCF0', 'L1i_size': 32, 'L1d_size': 64, 'L2_size': 2, 'L1i_assoc': 2, 'L1d_assoc': 2, 'L2_assoc': 8, 'cacheline_size': 64, 'CPI': 1.29910},
     {'name': 'SPECMCF1', 'L1i_size': 64, 'L1d_size': 64, 'L2_size': 2, 'L1i_assoc': 4, 'L1d_assoc': 2, 'L2_assoc': 8, 'cacheline_size': 64, 'CPI': 1.13938},
