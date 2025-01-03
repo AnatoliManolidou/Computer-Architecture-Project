@@ -288,6 +288,18 @@ $ ./build/ARM/gem5.opt -d spec_results_opt/specbzip/4 configs/example/se.py --cp
 
 ## STEP3: Cost function
 
+The cost function that we were asked to design, has to show the effect of the increase of all the characteristics that were tested in the previous section. Since we had to emphasize the impact on both speed and the size of the circuit, this is the first aproach on the concept:\
+
+![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\text{Cost}%20=%20\alpha%20\cdot%20|\text{CPI}%20-%201|%20+%20\beta%20\cdot%20\text{Resource%20Cost})
+
+As you can see, there are two subfunctions:
+
+![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\%20\alpha%20\cdot%20|\text{CPI}%20-%201|)
+
+![Formula](https://latex.codecogs.com/png.latex?\bg_white%20\%20\beta%20\cdot%20\text{Resource%20Cost})
+
+
+
 ![Formula](https://latex.codecogs.com/png.latex?\bg_white%20f%20=%20a%20\cdot%20\frac{\text{L1%20instruction%20cache%20size}}{32%20\text{kB}}%20+%20b%20\cdot%20\frac{\text{L1%20data%20cache%20size}}{64%20\text{kB}}%20+%20c%20\cdot%20\frac{\text{L2%20cache%20size}}{2%20\text{MB}}%20+%20d%20\cdot%20\frac{\text{L1%20instruction%20cache%20associativity}}{2}%20+%20e%20\cdot%20\frac{\text{L1%20data%20cache%20associativity}}{2}%20+%20f%20\cdot%20\frac{\text{L2%20cache%20associativity}}{8}%20+%20g%20\cdot%20\frac{\text{Cache%20line%20size}}{64%20\text{kB}})
 
 Firstly, for the above function i χχχχχχ that speed was more important than the size 
