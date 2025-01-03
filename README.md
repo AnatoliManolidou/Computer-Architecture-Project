@@ -331,7 +331,7 @@ The coefficients used in the cost function are as follows:
 
 These coefficients were chosen to represent the relative impact of each parameter on the system’s speed and circuit size, ensuring a balanced and accurate cost function.
 
-After using these [python code](), we have the following chart that represents the cost for each arcitecture of each benchmark: 
+After using these [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Python_code/Cost_function_calculators), we have the following chart that represents the cost for each arcitecture of each benchmark: 
 
 |Benchmark|L1D Size|L1I Size|L2 Size|L1D Associativity|L1I Associativity|L2 Associativity|Cache line Size|CPI|Cost2|Cost1|Cost|
 |---------|--------|--------|-------|-----------------|-----------------|----------------|---------------|---|-----|-----|----|
