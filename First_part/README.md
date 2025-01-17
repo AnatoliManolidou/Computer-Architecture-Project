@@ -122,7 +122,7 @@ Execution times|MinorCPU|TimingSimpleCPU|
   ./build/ARM/gem5.opt -d fib_results_minor_freq configs/example/se.py --cpu-type=MinorCPU --cpu-clock=0.7GHz --caches -c tests/test-progs/fibonacci/fib
   ```
 
-  So by changing the frequency to 7GHz, i noticed that the sim_seconds got a higher value (previously it was equal to 0.000036 seconds). Specifically
+  So by changing the frequency to 0.7GHz, i noticed that the sim_seconds got a higher value (previously it was equal to 0.000036 seconds). Specifically
 
   ```bash
   sim_seconds                                  0.000053                       # Number of seconds simulated
@@ -143,7 +143,7 @@ Execution times|MinorCPU|TimingSimpleCPU|
 
 * Changing the memory type
 
-For this test, i decided to change the mmeory type from `DDR3_1800_8x8` to `DDR4_2400_16x4`.
+For this test, i decided to change the memory type from `DDR3_1800_8x8` to `DDR4_2400_16x4`.
 
 For `MinorCPU` the following command was used:
 
@@ -168,20 +168,6 @@ And got these results:
   sim_seconds                                  0.000042                       # Number of seconds simulated
 ```
 For this type of CPU, we can notice that there is no change in the execution time.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # REFERENCES
 
