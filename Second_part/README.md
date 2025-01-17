@@ -162,7 +162,7 @@ For changing the memory configuration, the benchmark `speclibm` was chosen, and 
 ```bash
 ./build/ARM/gem5.opt -d spec_results_memory/speclibm configs/example/se.py --cpu-type=MinorCPU --cpu-clock=1GHz --mem-type=DDR3_2133_8x8 --caches --l2cache -c spec_cpu2006/470.lbm/src/speclibm -o '20 spec_cpu2006/470.lbm/data/lbm.in 0 1 spec_cpu2006/470.lbm/data/100_100_130_cf_a.of' -I 100000000
 ```
-Now the memory type is set to `DDR3_2133_8x8` {Important! `DDR3_2113_x64` was not listed}. From `stats.txt` we have the following:
+Now the memory type is set to `DDR3_2133_8x8` {`DDR3_2113_x64` was not listed so `DDR3_2133_8x8` was used}. From `stats.txt` we have the following: 
 
 ```bash
 sim_seconds                                  0.257413                       # Number of seconds simulated
