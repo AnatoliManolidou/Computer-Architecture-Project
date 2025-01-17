@@ -42,7 +42,7 @@ And these are the results that were extracted from the `stats.txt` file of each 
  | L1 Data cache miss rates |`line 867:` 0.014798|`line 868:` 0.002107 |`line 827:` 0.001637 |`line 865:` 0.121831 |`line 856:` 0.060972 |
  | L2 cache miss rates |`line 320:` 0.282163|`line 320:` 0.055046 |`line 318:` 0.077760 |`line 320:` 0.999972 |`line 320:` 0.999944 |
 
-Below there are 5 different graphs, each representing one of the characteristics that were just mentioned, over all of the 5 benchmarks. This [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/Part2_Graphs2.py) was used for generating the graphs while using the [stats.txt files](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Benchmarks_results) from the benchmarks.
+Below there are 5 different graphs, each representing one of the characteristics that were just mentioned, over all of the 5 benchmarks. This [python code](-://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/graphs_question2.py) was used for generating the graphs while using the [stats.txt files](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Benchmarks_results) from the benchmarks.
 
 ![execution_time](https://github.com/user-attachments/assets/fec541e8-908a-44b4-a2ba-5fc09b668bf0)
 ![cpi](https://github.com/user-attachments/assets/c1647cad-cf51-460b-b1b6-c07da9d69d41)
