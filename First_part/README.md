@@ -171,5 +171,6 @@ For this type of CPU, we can notice that there is no change in the execution tim
 
 # REFERENCES
 
-https://www.gem5.org/documentation/general_docs/cpu_models/minor_cpu
-https://www.gem5.org/documentation/general_docs/cpu_models/SimpleCPU
+[GEM5 MinorCPU](https://www.gem5.org/documentation/general_docs/cpu_models/minor_cpu)
+[GEM5 SimpleCPU](https://www.gem5.org/documentation/general_docs/cpu_models/SimpleCPU)
+[GEM5 Statistics overview](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)
