@@ -108,11 +108,11 @@ Execution times|MinorCPU|TimingSimpleCPU|
 |host_seconds|0.09|0.09|                      
 
 
-b)What are your comments about the above results?
+* #### b)What are your comments about the above results?
 
   We can see that when we used the `MinorCPU` type the simulation needed less time to execute than when we used `TimingSimpleCPU`. That comes from the fact that `MinorCPU` is based on pipelining and `TimingSimpleCPU` processes instructions sequentially.
 
-c)Run new simulations for the above types of CPUs using different CPU frequency and memory type.
+* #### c)Run new simulations for the above types of CPUs using different CPU frequency and memory type.
 
 * Changing the frequency of the CPU
 
