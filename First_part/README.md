@@ -92,18 +92,15 @@ According to [gem5.org](https://www.gem5.org), we have the following `in order C
 * **SimpleCPU**\
   This is a CPU model that is well suited for the case where a non detailed model is sufficient. This specific model has been broken into three different new classes.\
   _1.BaseSimpleCPU_\
-  The BaseSimpleCPU can not be run on its own. You must use one of the classes that inherits from BaseSimpleCPU, either AtomicSimpleCPU or TimingSimpleCPU.\
+  The BaseSimpleCPU is the foundational class for other simple CPU models in the gem5 simulator. It manages the essential state and common functions needed for the CPU's operation, such as checking for interrupts, setting up fetch requests, and advancing the program counter (PC). This class is not meant to be used directly; instead, it provides a structure and shared functionality for its derived classes, AtomicSimpleCPU and TimingSimpleCPU.\
   _2.AtomicSimpleCPU_\
-  AtomicSimpleCPU is a simple CPU model in gem5 where instructions are executed atomically, meaning each instruction is completed in a single cycle. This model does not simulate pipeline stages or the complexities of modern microarchitecture. It is used primarily for quick, high-level simulations where performance modeling detail is not required.\
+  AtomicSimpleCPU is a simple CPU model in gem5 where instructions are executed atomically. This means it estimates the cache access time without stalling, making it useful for simulations where speed is more critical than accuracy.. This model does not simulate pipeline stages or the complexities of modern microarchitecture. It is used primarily for quick, high-level simulations where performance modeling detail is not required.\
   _3.TimingSimpleCPU_\
   TimingSimpleCPU simulates a CPU with more detail than the atomic model, including the timing of instructions and memory accesses. It models pipeline stages, cache access latencies, and other timing-related aspects of CPU behavior. This CPU model is suitable for more accurate simulations where timing details are crucial but without the complexity of fully detailed microarchitectural simulation. It is slower than the atomic model but more realistic.
 * **MinorCPU**\
-This model has a fixed pipeline but adaptable data structures and execute behaviour. Also, it does not support multithreading 
+The Minor CPU is an in-order processor model that strictly follows in-order execution, meaning it processes instructions in the exact order they appear.This model has a fixed pipeline but adaptable data structures and execute behaviour. Also, it does not support multithreading.
 
 * #### a)WrIte a C program that implements the fibonacci sequence and then run simulations with GEM5, using different types of CPU.
-
-
-
 
 Execution times|MinorCPU|TimingSimpleCPU|
 |--------------|--------|---------------|
@@ -111,12 +108,11 @@ Execution times|MinorCPU|TimingSimpleCPU|
 |host_seconds|0.09|0.09|                      
 
 
-
 b)What are your comments about the above results?
 
   We can see that when we used the `MinorCPU` type the simulation needed less time to execute than when we used `TimingSimpleCPU`. That comes from the fact that `MinorCPU` is based on pipelining and `TimingSimpleCPU` processes instructions sequentially.
 
-b)Run new simulations for the above types of CPUs using different CPU frequency and memory type.
+c)Run new simulations for the above types of CPUs using different CPU frequency and memory type.
 
 * Changing the frequency of the CPU
 
