@@ -37,12 +37,12 @@ For all the above charecteristics i managed to verify the followings:
 
 Characteristic|config.ini|config.json|
 |---------|----------|-----------|
-|Cache line size         |line 15: cache_line_size=64|line 112: "cache_line_size": 64|
-|Voltage domain for system components         |line 1453: voltage=3.3|lines 102-07: "voltage_domain": {"name":"voltage_domain","eventq_index": 0, "voltage": [3.3],|
-|Memory bus type         |line 1419: type=CoherentXBar|line 30: "type": "CoherentXBar"|
-|Voltage for the CPU core         |lines 1223-26: [system.cpu_cluster.voltage_domain] type=VoltageDomain eventq_index=0 voltage=1.2|lines 127-35: "cpu_cluster": {"name": "cpu_cluster", "thermal_domain": null, "voltage_domain": {"name": "voltage_domain", "eventq_index": 0, "voltage": [1.2],|
-|CPU type         |line 67: type=MinorCPU|line 429: "type": "MinorCPU"|
-|Number of memory ranks per channel         |line 1296: ranks_per_channel=2|line 1771: "ranks_per_channel": 2|
+|Cache line size         |_line 15:_ cache_line_size=64|_line 112:_ "cache_line_size": 64|
+|Voltage domain for system components         |line 1453: voltage=3.3|_lines 102-07:_ "voltage_domain": {"name":"voltage_domain","eventq_index": 0, "voltage": [3.3],|
+|Memory bus type         |_line 1419:_ type=CoherentXBar|_line 30:_ "type": "CoherentXBar"|
+|Voltage for the CPU core         |_lines 1223-26:_ [system.cpu_cluster.voltage_domain] type=VoltageDomain eventq_index=0 voltage=1.2|_lines 127-35:_ "cpu_cluster": {"name": "cpu_cluster", "thermal_domain": null, "voltage_domain": {"name": "voltage_domain", "eventq_index": 0, "voltage": [1.2],|
+|CPU type         |_line 67:_ type=MinorCPU|_line 429:_ "type": "MinorCPU"|
+|Number of memory ranks per channel         |_line 1296:_ ranks_per_channel=2|_line 1771:_ "ranks_per_channel": 2|
 
 We can notice that both the configuration files say that the memory ranks per channel are equal to 2 but this does not allign with the python configuration file. Despite the fact that we did not add any configuration when we run GEM5. We get 2 memory ranks per channel from the configuration files, because of the memory type that we selected `(DDR3_1600_8x8)`.
 
