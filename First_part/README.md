@@ -87,7 +87,7 @@ The number of times that the L2 cache was accessed is equal to the number of tim
 
 ## Third Question: In order CPU models.
 
-According to [gem5.org](https://www.gem5.org), we have the following in order CPU models:
+According to [gem5.org](https://www.gem5.org), we have the following `in order CPU models`:
 
 * **SimpleCPU**\
   This is a CPU model that is well suited for the case where a non detailed model is sufficient. This specific model has been broken into three different new classes.\
