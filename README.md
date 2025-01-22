@@ -174,7 +174,6 @@ For this type of CPU, we can notice that there is no change in the execution tim
 [GEM5 SimpleCPU](https://www.gem5.org/documentation/general_docs/cpu_models/SimpleCPU)\
 [GEM5 Statistics overview](https://www.gem5.org/documentation/learning_gem5/part1/gem5_stats/)
 
-
 # SECOND PART
 
 ## First step. Execute SPEC CPU2006 Benchmarks on GEM5
@@ -547,8 +546,6 @@ From the above chart, as regards the best architectures for both cost & performa
 `SPECBZIP`: **SPECBZIP0** (Cost: 1.6797, CPI: 1.67965)
 
 These architectures represent the best balance of minimizing cost and maximizing performance for each benchmark.
-
-
 
 # REFERENCES
 
