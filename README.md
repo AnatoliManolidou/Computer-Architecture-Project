@@ -351,7 +351,7 @@ while for `DDR3_1600_x64` we had:
 sim_seconds                                  0.174671                       # Number of seconds simulated
 ```
 
-# STEP 2
+# STEP 2. Trying to achieve maximum efficiency for the system in each benchmark 
 
 After taking into consideration these [results](#results) from step 1, for each characteristic the following conclusions were made:
 
