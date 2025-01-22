@@ -2,7 +2,7 @@
 
 ## First step. Execute SPEC CPU2006 Benchmarks on GEM5
 
-### First question. What informations can you get about the memory system of the CPU that we are simulating?
+### First question: What informations can you get about the memory system of the CPU that we are simulating?
 
 From the `config.ini` file: 
 
@@ -13,7 +13,7 @@ From the `config.ini` file:
 |L2|`line 994/line 1018:` [system.l2]/size=2097152|
 |Cache line|`line 155:`  "cache_line_size": 64|
 
-### Second Question. Benchmark analysis
+### Second Question: Benchmark analysis
 
 These are the commands that were used:
 
@@ -42,7 +42,7 @@ And these are the results that were extracted from the `stats.txt` file of each 
  | L1 Data cache miss rates |`line 867:` 0.014798|`line 868:` 0.002107 |`line 827:` 0.001637 |`line 865:` 0.121831 |`line 856:` 0.060972 |
  | L2 cache miss rates |`line 320:` 0.282163|`line 320:` 0.055046 |`line 318:` 0.077760 |`line 320:` 0.999972 |`line 320:` 0.999944 |
 
-Below there are 5 different graphs, each representing one of the characteristics that were just mentioned, over all of the 5 benchmarks. This [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/graphs_question2.py) was used for generating the graphs while using the [stats.txt files](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Benchmarks_results) from the benchmarks.
+Below there are 5 different graphs, each representing one of the characteristics that were just mentioned, over all of the 5 benchmarks. This [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/step1_question2_graphs.py) was used for generating the graphs while using the stats.txt files from the benchmarks.
 
 ![execution_time](https://github.com/user-attachments/assets/fec541e8-908a-44b4-a2ba-5fc09b668bf0)
 ![cpi](https://github.com/user-attachments/assets/c1647cad-cf51-460b-b1b6-c07da9d69d41)
@@ -51,7 +51,7 @@ Below there are 5 different graphs, each representing one of the characteristics
 ![l2_miss_rate](https://github.com/user-attachments/assets/a93ba7e8-96b4-450d-aeb6-2c317d38dda0)
 
 
-### Third question. Effect of Changing CPU Frequency
+### Third question: Effect of Changing CPU Frequency
 
 After running the benchmarks for the two new frequency configurations, here are the results related to the clock from the `stats.txt` files. These snippets were derived from the `specmcf` benchmark, where the clock values were the same across all benchmarks.
 
@@ -149,7 +149,7 @@ and `lines 160-164`
                 1000
             ],
 ```
-Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/Part2_Graphs2.py) that was used before (now modified to extract only the graph for execution time) the following graphs were obtained:
+Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/step1_question3_frequency.py) that was used before (now modified to extract only the graph for execution time) the following graphs were obtained:
 ![execution_time_1GHz](https://github.com/user-attachments/assets/fa803096-e3f1-4b4b-9cf7-0a593e924aa2)
 ![execution_time_3GHz](https://github.com/user-attachments/assets/8db07496-97ab-4749-8442-98d31d7ff7d7)
 
@@ -174,7 +174,7 @@ while for `DDR3_1600_x64` we had:
 sim_seconds                                  0.174671                       # Number of seconds simulated
 ```
 
-# STEP 2
+# STEP 2. Trying to achieve maximum efficiency for the system in each benchmark 
 
 After taking into consideration these [results](#results) from step 1, for each characteristic the following conclusions were made:
 
@@ -199,7 +199,7 @@ The only benchmark that showed a high miss rate for the L1 instruction cache, wa
 * L1 Instruction Cache Associativity
 As mentioned above, the `specmcf` showed a high miss rate for the L1 instruction cache, so an increase in its associativity was also tested.
 
-Lastly, this [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/optimizations_graph.py) was used in order to obtain all of the following graphs.
+Lastly, this [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/step2_question2_optimizations_graph.py) was used in order to obtain all of the following graphs.
 
 ## SPECLIBM
 
@@ -305,9 +305,9 @@ In this formulation:
 `a`, `b`, `c`, `d`, `e`, `f`, and `g` are weights that reflect the relative cost impact of each parameter.
 The denominators represent baseline values, allowing the function to express the relative increase in cost compared to standard configurations.
 
-We know that **L1 caches are more expensive than L2 caches**. L2 caches have a lower cost per bit due to their greater distance from the core and slower access times. On the other hand, L1 caches, being closer to the core, have a higher cost per bit due to their speed and proximity. Therefore, a larger coefficient was assigned to L1 caches to reflect their higher impact on the overall cost.
+We know that L1 caches are more expensive than L2 caches. L2 caches have a lower cost per bit due to their greater distance from the core and slower access times. On the other hand, L1 caches, being closer to the core, have a higher cost per bit due to their speed and proximity. Therefore, a larger coefficient was assigned to L1 caches to reflect their higher impact on the overall cost.
 
-An **increase in cache line size** is the least costly change in terms of circuit complexity. Cache line size has a moderate effect on both speed and circuit size. Larger block sizes can improve hit rates (due to spatial locality), but they also increase transfer time. As such, a relatively small coefficient was chosen for this parameter.
+An increase in cache line size is the least costly change in terms of circuit complexity. Cache line size has a moderate effect on both speed and circuit size. Larger block sizes can improve hit rates (due to spatial locality), but they also increase transfer time. As such, a relatively small coefficient was chosen for this parameter.
 
 Higher **associativity** results in more complex circuits. Associativity increases the number of comparators and multiplexers, which directly affects the circuit's physical size and design complexity. While it can improve hit rates, higher associativity also increases dynamic power consumption approximately linearly as more data is read out simultaneously. The coefficients for associativity were chosen to reflect these trade-offs.
 
@@ -327,7 +327,7 @@ The coefficients used in the cost function are as follows:
 
 These coefficients were chosen to represent the relative impact of each parameter on the system’s speed and circuit size, ensuring a balanced and accurate cost function.
 
-After using these [python codes](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Python_code/Cost_function_calculators), we have the following chart that represents the cost for each arcitecture of each benchmark: 
+After using these [python codes](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Python_code/step3_cost_function_calculators), we have the following chart that represents the cost for each arcitecture of each benchmark: 
 
 |Benchmark|L1D Size|L1I Size|L2 Size|L1D Associativity|L1I Associativity|L2 Associativity|Cache line Size|CPI|Cost2|Cost1|Cost|
 |---------|--------|--------|-------|-----------------|-----------------|----------------|---------------|---|-----|-----|----|
@@ -381,5 +381,3 @@ These architectures represent the best balance of minimizing cost and maximizing
 [Ccahes(2)](https://courses.cs.washington.edu/courses/cse378/09au/lectures/cse378au09-20.pdf)\
 [Cache Memory Design Trade-offs](https://www2.it.uu.se/research/publications/lic/2003-009/2003-009.pdf)\
 [Associativity](https://gab.wallawalla.edu/~curt.nelson/cptr380/lecture/chapter5%20-%20set%20associative%20caches.pdf)
-
-
