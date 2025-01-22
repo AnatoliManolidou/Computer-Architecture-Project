@@ -219,7 +219,7 @@ And these are the results that were extracted from the `stats.txt` file of each 
  | L1 Data cache miss rates |`line 867:` 0.014798|`line 868:` 0.002107 |`line 827:` 0.001637 |`line 865:` 0.121831 |`line 856:` 0.060972 |
  | L2 cache miss rates |`line 320:` 0.282163|`line 320:` 0.055046 |`line 318:` 0.077760 |`line 320:` 0.999972 |`line 320:` 0.999944 |
 
-Below there are 5 different graphs, each representing one of the characteristics that were just mentioned, over all of the 5 benchmarks. This [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/graphs_question2.py) was used for generating the graphs while using the [stats.txt files](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Benchmarks_results) from the benchmarks.
+Below there are 5 different graphs, each representing one of the characteristics that were just mentioned, over all of the 5 benchmarks. This [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/step1_question2_graphs.py) was used for generating the graphs while using the stats.txt files from the benchmarks.
 
 ![execution_time](https://github.com/user-attachments/assets/fec541e8-908a-44b4-a2ba-5fc09b668bf0)
 ![cpi](https://github.com/user-attachments/assets/c1647cad-cf51-460b-b1b6-c07da9d69d41)
@@ -326,7 +326,7 @@ and `lines 160-164`
                 1000
             ],
 ```
-Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/Part2_Graphs2.py) that was used before (now modified to extract only the graph for execution time) the following graphs were obtained:
+Now, if we add one more processor it would more likely inherit the `cpu_clk_domain`, since this new CPU operates with a seperate clock that is independed from the rest of the system. Finally, using the [pyhton code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/step1_question3_frequency.py) that was used before (now modified to extract only the graph for execution time) the following graphs were obtained:
 ![execution_time_1GHz](https://github.com/user-attachments/assets/fa803096-e3f1-4b4b-9cf7-0a593e924aa2)
 ![execution_time_3GHz](https://github.com/user-attachments/assets/8db07496-97ab-4749-8442-98d31d7ff7d7)
 
@@ -376,7 +376,7 @@ The only benchmark that showed a high miss rate for the L1 instruction cache, wa
 * L1 Instruction Cache Associativity
 As mentioned above, the `specmcf` showed a high miss rate for the L1 instruction cache, so an increase in its associativity was also tested.
 
-Lastly, this [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/optimizations_graph.py) was used in order to obtain all of the following graphs.
+Lastly, this [python code](https://github.com/AnatoliManolidou/Computer-Architecture-Project/blob/main/Second_part/Python_code/step2_question2_optimizations_graph.py) was used in order to obtain all of the following graphs.
 
 ## SPECLIBM
 
@@ -504,7 +504,7 @@ The coefficients used in the cost function are as follows:
 
 These coefficients were chosen to represent the relative impact of each parameter on the system’s speed and circuit size, ensuring a balanced and accurate cost function.
 
-After using these [python codes](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Python_code/Cost_function_calculators), we have the following chart that represents the cost for each arcitecture of each benchmark: 
+After using these [python codes](https://github.com/AnatoliManolidou/Computer-Architecture-Project/tree/main/Second_part/Python_code/step3_cost_function_calculators), we have the following chart that represents the cost for each arcitecture of each benchmark: 
 
 |Benchmark|L1D Size|L1I Size|L2 Size|L1D Associativity|L1I Associativity|L2 Associativity|Cache line Size|CPI|Cost2|Cost1|Cost|
 |---------|--------|--------|-------|-----------------|-----------------|----------------|---------------|---|-----|-----|----|
