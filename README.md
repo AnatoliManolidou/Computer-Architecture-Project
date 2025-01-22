@@ -482,9 +482,9 @@ In this formulation:
 `a`, `b`, `c`, `d`, `e`, `f`, and `g` are weights that reflect the relative cost impact of each parameter.
 The denominators represent baseline values, allowing the function to express the relative increase in cost compared to standard configurations.
 
-We know that **L1 caches are more expensive than L2 caches**. L2 caches have a lower cost per bit due to their greater distance from the core and slower access times. On the other hand, L1 caches, being closer to the core, have a higher cost per bit due to their speed and proximity. Therefore, a larger coefficient was assigned to L1 caches to reflect their higher impact on the overall cost.
+We know that L1 caches are more expensive than L2 caches. L2 caches have a lower cost per bit due to their greater distance from the core and slower access times. On the other hand, L1 caches, being closer to the core, have a higher cost per bit due to their speed and proximity. Therefore, a larger coefficient was assigned to L1 caches to reflect their higher impact on the overall cost.
 
-An **increase in cache line size** is the least costly change in terms of circuit complexity. Cache line size has a moderate effect on both speed and circuit size. Larger block sizes can improve hit rates (due to spatial locality), but they also increase transfer time. As such, a relatively small coefficient was chosen for this parameter.
+An increase in cache line size is the least costly change in terms of circuit complexity. Cache line size has a moderate effect on both speed and circuit size. Larger block sizes can improve hit rates (due to spatial locality), but they also increase transfer time. As such, a relatively small coefficient was chosen for this parameter.
 
 Higher **associativity** results in more complex circuits. Associativity increases the number of comparators and multiplexers, which directly affects the circuit's physical size and design complexity. While it can improve hit rates, higher associativity also increases dynamic power consumption approximately linearly as more data is read out simultaneously. The coefficients for associativity were chosen to reflect these trade-offs.
 
