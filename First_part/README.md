@@ -100,19 +100,18 @@ According to [gem5.org](https://www.gem5.org), we have the following `in order C
 * **MinorCPU**\
 The Minor CPU is an in-order processor model that strictly follows in-order execution, meaning it processes instructions in the exact order they appear.This model has a fixed pipeline but adaptable data structures and execute behaviour. Also, it does not support multithreading.
 
-* #### a) Write a C program that implements the fibonacci sequence and then run simulations with GEM5, using different types of CPU.
+#### a) Write a C program that implements the fibonacci sequence and then run simulations with GEM5, using different types of CPU.
 
 Execution times|MinorCPU|TimingSimpleCPU|
 |--------------|--------|---------------|
 |sim_seconds|0.000036|0.000042|
 |host_seconds|0.09|0.09|                      
 
-
-* #### b) What are your comments about the above results?
+#### b) What are your comments about the above results?
 
   We can see that when we used the `MinorCPU` type the simulation needed less time to execute than when we used `TimingSimpleCPU`. That comes from the fact that `MinorCPU` is based on pipelining and `TimingSimpleCPU` processes instructions sequentially.
 
-* #### c) Run new simulations for the above types of CPUs using different CPU frequency and memory type.
+#### c) Run new simulations for the above types of CPUs using different CPU frequency and memory type.
 
 * Changing the frequency of the CPU
 
