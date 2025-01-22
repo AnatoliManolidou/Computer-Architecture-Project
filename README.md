@@ -100,19 +100,18 @@ According to [gem5.org](https://www.gem5.org), we have the following `in order C
 * **MinorCPU**\
 The Minor CPU is an in-order processor model that strictly follows in-order execution, meaning it processes instructions in the exact order they appear.This model has a fixed pipeline but adaptable data structures and execute behaviour. Also, it does not support multithreading.
 
-* #### a) Write a C program that implements the fibonacci sequence and then run simulations with GEM5, using different types of CPU.
+#### a) Write a C program that implements the fibonacci sequence and then run simulations with GEM5, using different types of CPU.
 
 Execution times|MinorCPU|TimingSimpleCPU|
 |--------------|--------|---------------|
 |sim_seconds|0.000036|0.000042|
 |host_seconds|0.09|0.09|                      
 
-
-* #### b) What are your comments about the above results?
+#### b) What are your comments about the above results?
 
   We can see that when we used the `MinorCPU` type the simulation needed less time to execute than when we used `TimingSimpleCPU`. That comes from the fact that `MinorCPU` is based on pipelining and `TimingSimpleCPU` processes instructions sequentially.
 
-* #### c) Run new simulations for the above types of CPUs using different CPU frequency and memory type.
+#### c) Run new simulations for the above types of CPUs using different CPU frequency and memory type.
 
 * Changing the frequency of the CPU
 
@@ -180,7 +179,7 @@ For this type of CPU, we can notice that there is no change in the execution tim
 
 ## First step. Execute SPEC CPU2006 Benchmarks on GEM5
 
-### First question. What informations can you get about the memory system of the CPU that we are simulating?
+### First question: What informations can you get about the memory system of the CPU that we are simulating?
 
 From the `config.ini` file: 
 
@@ -191,7 +190,7 @@ From the `config.ini` file:
 |L2|`line 994/line 1018:` [system.l2]/size=2097152|
 |Cache line|`line 155:`  "cache_line_size": 64|
 
-### Second Question. Benchmark analysis
+### Second Question: Benchmark analysis
 
 These are the commands that were used:
 
@@ -229,7 +228,7 @@ Below there are 5 different graphs, each representing one of the characteristics
 ![l2_miss_rate](https://github.com/user-attachments/assets/a93ba7e8-96b4-450d-aeb6-2c317d38dda0)
 
 
-### Third question. Effect of Changing CPU Frequency
+### Third question: Effect of Changing CPU Frequency
 
 After running the benchmarks for the two new frequency configurations, here are the results related to the clock from the `stats.txt` files. These snippets were derived from the `specmcf` benchmark, where the clock values were the same across all benchmarks.
 
